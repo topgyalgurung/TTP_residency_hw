@@ -1,6 +1,7 @@
 /*
 Topgyal Gurung
 Form Edit Exercise React JS 
+
 */
 
 import React, {Component }from 'react';
@@ -15,8 +16,9 @@ class Display extends Component{
     lastName:this.props.lastName,
     showComponent:false, //for different page
     }
-    this.handlefirstChange=this.handlefirstChange.bind(this);
-    this.handlelastChange=this.handlelastChange.bind(this);
+    this.handleChange=this.handleChange.bind(this);
+    //this.handlefirstChange=this.handlefirstChange.bind(this);
+    //this.handlelastChange=this.handlelastChange.bind(this);
     this.onButtonClick=this.onButtonClick.bind(this);
     this.save=this.save.bind(this);
     this.delete=this.delete.bind(this);
@@ -28,16 +30,21 @@ class Display extends Component{
     });
   }
   //controlled component
-  handlefirstChange(event){
+  handleChange(event){
     this.setState({
-      firstName:event.target.value,
+      [event.target.name]:event.target.value
     });
   }
-  handlelastChange(event){
-    this.setState({
-      lastName:event.target.value,
-    })
-  }
+  // handlefirstChange(event){
+  //   this.setState({
+  //     firstName:event.target.value,
+  //   });
+  // }
+  // handlelastChange(event){
+  //   this.setState({
+  //     lastName:event.target.value,
+  //   })
+  // }
   save(){
     this.setState({
       firstName:this.state.firstName,
@@ -65,8 +72,8 @@ class Display extends Component{
         // if showComponent true 
        <div>
          {/* Forms- interactive props, if value defined must define onchange handler */}
-        First Name: <input id="name" value={this.state.firstName} onChange={this.handlefirstChange}></input><br/>
-        Last Name: <input id="name"value={this.state.lastName} onChange={this.handlelastChange}></input><br/>
+        First Name: <input name="firstName" value={this.state.firstName} onChange={this.handleChange}></input><br/>
+        Last Name: <input name="lastName"value={this.state.lastName} onChange={this.handleChange}></input><br/>
          <button id="save" onClick={this.save}>Save</button>
         <button id="cancel" onClick={this.delete}>Delete</button>
       </div>
